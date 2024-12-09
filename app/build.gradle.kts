@@ -63,4 +63,6 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     implementation(libs.koin.compose.viewmodel)
+
+    implementation(libs.bundles.coil)
 }

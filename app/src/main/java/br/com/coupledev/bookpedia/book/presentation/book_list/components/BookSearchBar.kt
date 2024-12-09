@@ -36,7 +36,7 @@ import br.com.coupledev.bookpedia.ui.theme.SandYellow
 fun BookSearchBar(
     searchQuery: String,
     onSearchQueryChange: (String) -> Unit,
-    onItemSearch: () -> Unit,
+    onImeSearch: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     CompositionLocalProvider(
@@ -45,7 +45,6 @@ fun BookSearchBar(
             backgroundColor = SandYellow
         )
     ) {
-
         OutlinedTextField(
             value = searchQuery,
             onValueChange = onSearchQueryChange,
@@ -69,7 +68,7 @@ fun BookSearchBar(
             singleLine = true,
             keyboardActions = KeyboardActions(
                 onSearch = {
-                    onItemSearch()
+                    onImeSearch()
                 }
             ),
             keyboardOptions = KeyboardOptions(
@@ -111,7 +110,7 @@ private fun BookSearchBarPreview() {
     BookpediaTheme {
         BookSearchBar(
             searchQuery = "Kotlin",
-            onItemSearch = {},
+            onImeSearch = {},
             onSearchQueryChange = {},
             modifier = Modifier
                 .fillMaxWidth()
