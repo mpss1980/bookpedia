@@ -78,6 +78,14 @@ private fun BookListScreen(
         searchResultsListSate.animateScrollToItem(0)
     }
 
+    LaunchedEffect(state.selectedTabIndex) {
+        pageState.animateScrollToPage(state.selectedTabIndex)
+    }
+
+    LaunchedEffect(pageState.currentPage) {
+        onAction(BookListAction.OnTabSelected(pageState.currentPage))
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -213,7 +221,7 @@ private fun BookListScreen(
                                         text = stringResource(R.string.no_favorite_books),
                                         textAlign = TextAlign.Center,
                                         style = MaterialTheme.typography.headlineSmall,
-                                        color = MaterialTheme.colorScheme.error
+                                        color = Color.Black
                                     )
                                 } else {
                                     BookList(
