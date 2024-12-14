@@ -55,6 +55,7 @@ dependencies {
     implementation(compose.components.resources)
     implementation(libs.androidx.lifecycle.viewmodel)
     implementation(libs.kotlinx.serialization.json)
+    implementation(libs.jetbrains.compose.navigation)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

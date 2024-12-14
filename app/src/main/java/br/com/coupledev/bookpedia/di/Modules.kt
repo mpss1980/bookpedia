@@ -4,7 +4,9 @@ import br.com.coupledev.bookpedia.book.data.network.KtorRemoteBookpediaDataSourc
 import br.com.coupledev.bookpedia.book.data.network.RemoteBookDataSource
 import br.com.coupledev.bookpedia.book.data.repository.DefaultBookRepository
 import br.com.coupledev.bookpedia.book.domain.BookRepository
+import br.com.coupledev.bookpedia.book.presentation.book_detail.BookDetailViewModel
 import br.com.coupledev.bookpedia.book.presentation.book_list.BookListViewModel
+import br.com.coupledev.bookpedia.book.presentation.SelectedBookViewModel
 import br.com.coupledev.bookpedia.core.data.HttpClientFactory
 import io.ktor.client.engine.okhttp.OkHttp
 import org.koin.core.module.dsl.singleOf
@@ -23,4 +25,6 @@ val appModule = module {
     singleOf(::DefaultBookRepository).bind<BookRepository>()
 
     viewModelOf(::BookListViewModel)
+    viewModelOf(::SelectedBookViewModel)
+    viewModelOf(::BookDetailViewModel)
 }
