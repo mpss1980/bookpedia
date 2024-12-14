@@ -7,17 +7,11 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import br.com.coupledev.bookpedia.book.data.network.KtorRemoteBookpediaDataSource
-import br.com.coupledev.bookpedia.book.data.repository.DefaultBookRepository
 import br.com.coupledev.bookpedia.book.presentation.book_list.BookListScreenRoot
 import br.com.coupledev.bookpedia.book.presentation.book_list.BookListViewModel
-import br.com.coupledev.bookpedia.core.data.HttpClientFactory
 import br.com.coupledev.bookpedia.ui.theme.BookpediaTheme
-import io.ktor.client.engine.okhttp.OkHttp
+import org.koin.androidx.compose.koinViewModel
 
 class MainActivity : ComponentActivity() {
 
@@ -25,24 +19,14 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            val engine = remember { OkHttp.create() }
+            val viewModel = koinViewModel<BookListViewModel>()
 
             BookpediaTheme {
                 Scaffold(
                     modifier = Modifier.fillMaxSize()
                 ) { innerPadding ->
                     BookListScreenRoot(
-                        viewModel = remember {
-                            BookListViewModel(
-                                bookRepository = DefaultBookRepository(
-                                    remoteBookDataSource = KtorRemoteBookpediaDataSource(
-                                        httpClient = HttpClientFactory.create(
-                                            engine = engine
-                                        )
-                                    )
-                                )
-                            )
-                        },
+                        viewModel = viewModel,
                         onBookClick = {
 
                         },

@@ -64,7 +64,11 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+    implementation(libs.koin.compose)
     implementation(libs.koin.compose.viewmodel)
+    implementation(libs.koin.android)
+    implementation(libs.koin.androidx.compose)
+    api(libs.koin.core)
 
     implementation(libs.ktor.client.okhttp)
 
