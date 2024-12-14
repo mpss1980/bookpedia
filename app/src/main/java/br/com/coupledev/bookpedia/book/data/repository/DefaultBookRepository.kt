@@ -11,7 +11,7 @@ import br.com.coupledev.bookpedia.core.domain.map
 class DefaultBookRepository(
     private val remoteBookDataSource: RemoteBookDataSource
 ): BookRepository {
-    override suspend fun searchBook(query: String): Result<List<Book>, DataError.Remote> {
+    override suspend fun searchBooks(query: String): Result<List<Book>, DataError.Remote> {
         return remoteBookDataSource
             .searchBook(query)
             .map {dto ->

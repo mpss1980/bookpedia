@@ -4,5 +4,5 @@ import br.com.coupledev.bookpedia.core.domain.DataError
 import br.com.coupledev.bookpedia.core.domain.Result
 
 interface BookRepository {
-    suspend fun searchBook(query: String): Result<List<Book>, DataError.Remote>
+    suspend fun searchBooks(query: String): Result<List<Book>, DataError.Remote>
 }

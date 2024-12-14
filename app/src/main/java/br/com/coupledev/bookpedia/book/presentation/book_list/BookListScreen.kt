@@ -193,7 +193,7 @@ private fun BookListScreen(
 
                                         state.searchResults.isEmpty() -> {
                                             Text(
-                                                text = stringResource(R.string.no_search_results),
+                                                text = stringResource(R.string.error_no_search_results),
                                                 textAlign = TextAlign.Center,
                                                 style = MaterialTheme.typography.headlineSmall,
                                                 color = MaterialTheme.colorScheme.error
@@ -218,7 +218,7 @@ private fun BookListScreen(
                             1 -> {
                                 if (state.favoriteBooks.isEmpty()) {
                                     Text(
-                                        text = stringResource(R.string.no_favorite_books),
+                                        text = stringResource(R.string.error_no_favorite_books),
                                         textAlign = TextAlign.Center,
                                         style = MaterialTheme.typography.headlineSmall,
                                         color = Color.Black

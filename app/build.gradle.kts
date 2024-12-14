@@ -66,5 +66,8 @@ dependencies {
 
     implementation(libs.koin.compose.viewmodel)
 
+    implementation(libs.ktor.client.okhttp)
+
     implementation(libs.bundles.coil)
+    implementation(libs.bundles.ktor)
 }

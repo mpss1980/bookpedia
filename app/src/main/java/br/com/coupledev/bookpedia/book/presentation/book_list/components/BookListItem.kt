@@ -74,11 +74,12 @@ fun BookListItem(
                 val painter = rememberAsyncImagePainter(
                     model = book.imageUrl,
                     onSuccess = {
-                        if (it.painter.intrinsicSize.width > 1 && it.painter.intrinsicSize.height > 1) {
-                            Result.success(it.painter)
-                        } else {
-                            Result.failure(Exception("Invalid image size"))
-                        }
+                        imageLoadResult =
+                            if (it.painter.intrinsicSize.width > 1 && it.painter.intrinsicSize.height > 1) {
+                                Result.success(it.painter)
+                            } else {
+                                Result.failure(Exception("Invalid image size"))
+                            }
                     },
                     onError = {
                         it.result.throwable.printStackTrace()
@@ -162,7 +163,7 @@ fun BookListItemPreview() {
             book = Book(
                 id = "123",
                 title = "Kotlin Programming",
-                imageUrl = "https://placehold.co/400x600",
+                imageUrl = "https://covers.openlibrary.org/b/id/240727-S.jpg",
                 authors = listOf("Mathew Mathias"),
                 description = "Description",
                 languages = listOf("English"),
