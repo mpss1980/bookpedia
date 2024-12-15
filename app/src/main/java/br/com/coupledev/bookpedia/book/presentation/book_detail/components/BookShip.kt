@@ -1,7 +1,10 @@
 package br.com.coupledev.bookpedia.book.presentation.book_detail.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -17,10 +20,10 @@ enum class ChiSize {
 }
 
 @Composable
-fun BookShip(
+fun BookChip(
     modifier: Modifier = Modifier,
     size: ChiSize = ChiSize.REGULAR,
-    chipContent: @Composable () -> Unit
+    chipContent: @Composable RowScope.() -> Unit
 ) {
     Box(
         modifier = modifier
@@ -38,6 +41,11 @@ fun BookShip(
             ),
         contentAlignment = Alignment.Center
     ) {
-        chipContent()
+       Row(
+           verticalAlignment = Alignment.CenterVertically,
+           horizontalArrangement = Arrangement.Center
+       ) {
+           chipContent()
+       }
     }
 }
