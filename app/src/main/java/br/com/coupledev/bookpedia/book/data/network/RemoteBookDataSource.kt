@@ -1,5 +1,6 @@
 package br.com.coupledev.bookpedia.book.data.network
 
+import br.com.coupledev.bookpedia.book.data.dto.BookWorkDto
 import br.com.coupledev.bookpedia.book.data.dto.SearchResponseDto
 import br.com.coupledev.bookpedia.core.domain.DataError
 import br.com.coupledev.bookpedia.core.domain.Result
@@ -9,4 +10,6 @@ interface RemoteBookDataSource {
         query: String,
         resultLimit: Int? = null
     ): Result<SearchResponseDto, DataError.Remote>
+
+    suspend fun getBookDetails(bookWorkId: String): Result<BookWorkDto, DataError.Remote>
 }
