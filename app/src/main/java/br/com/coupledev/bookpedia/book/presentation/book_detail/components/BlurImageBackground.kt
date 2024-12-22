@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
@@ -42,6 +43,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import br.com.coupledev.bookpedia.R
+import br.com.coupledev.bookpedia.core.presentation.PulseAnimation
 import br.com.coupledev.bookpedia.ui.theme.DarkBlue
 import br.com.coupledev.bookpedia.ui.theme.DesertWhite
 import br.com.coupledev.bookpedia.ui.theme.SandYellow
@@ -124,9 +126,6 @@ fun BlurImageBackground(
                     .height(270.dp)
                     .aspectRatio(2 / 3f),
                 shape = RoundedCornerShape(8.dp),
-                colors = CardDefaults.elevatedCardColors(
-                    contentColor = Color.Transparent
-                ),
                 elevation = CardDefaults.elevatedCardElevation(
                     defaultElevation = 15.dp
                 )
@@ -135,7 +134,16 @@ fun BlurImageBackground(
                     targetState = imageLoadResult
                 ) { result ->
                     when (result) {
-                        null -> CircularProgressIndicator()
+                        null -> Box(
+                            modifier = Modifier.fillMaxSize(),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            PulseAnimation(
+                                modifier = Modifier
+                                    .size(60.dp)
+                                    .align(Alignment.Center)
+                            )
+                        }
                         else -> {
                             Box {
                                 Image(

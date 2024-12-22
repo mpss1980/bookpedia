@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -46,7 +48,10 @@ class MainActivity : ComponentActivity() {
                 navigation<Route.BookGraph>(
                     startDestination = Route.BookList
                 ) {
-                    composable<Route.BookList> {
+                    composable<Route.BookList>(
+                        exitTransition = { slideOutHorizontally() },
+                        popEnterTransition = { slideInHorizontally() }
+                    ) {
                         val viewModel = koinViewModel<BookListViewModel>()
                         val selectedBookViewModel =
                             it.sharedKoinViewModel<SelectedBookViewModel>(navController)
@@ -72,7 +77,18 @@ class MainActivity : ComponentActivity() {
                             }
                         }
                     }
-                    composable<Route.BookDetail> {
+                    composable<Route.BookDetail>(
+                        enterTransition = {
+                            slideInHorizontally { initialOffset ->
+                                initialOffset
+                            }
+                        },
+                        exitTransition = {
+                            slideOutHorizontally { initialOffset ->
+                                initialOffset
+                            }
+                        },
+                    ) {
                         val selectedBookViewModel =
                             it.sharedKoinViewModel<SelectedBookViewModel>(navController)
                         val viewModel = koinViewModel<BookDetailViewModel>()
